@@ -1,0 +1,81 @@
+{% extends 'index.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/register.css">
+{% endblock %}
+
+
+{% block content %}
+<div class="registration-page-container mt-5">
+
+    <h1 class="text-center text-warning fs-2">User Registration</h1>
+    <div class="form-container d-flex flex-column justify-content-center">
+        <form class="" id="registration-form" action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="" class="form-label text-primary fw-bold fs-5">First Name</label>
+                <input type="text" name="first_name" class="form-control d-inline" id="" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label text-primary fw-bold fs-5">Last Name</label>
+                <input type="text" name="last_name" class="form-control d-inline" id="" required>
+            </div>
+
+            <div class="mb-3 text-light">
+                <label for="" class="form-label text-primary fw-bold fs-5">Email</label>
+                <input type="email" name="email" class="form-control" id="email-field" aria-describedby="emailHelp"
+                    required>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label text-primary fw-bold fs-5">Username</label>
+                <input type="text" name="username" class="form-control d-inline" id="" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label text-primary fw-bold fs-5">Password</label>
+                <input type="password" name="password" class="form-control d-inline" id="" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label text-primary fw-bold fs-5">Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control d-inline" id="" required>
+            </div>
+
+            {% for message in messages%}
+            <div class="alert alert-danger d-flex justify-content-center fw-bold">
+                {{message}}
+            </div>
+            {% endfor %}
+
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-primary mb-3 ps-5 pe-5">Submit</button>
+            </div>
+        </form>
+
+        <p class="text-light text-center ">Already have account ? Login here <span><a href="/login"><Button
+                        class="text-warning bg-transparent fw-bold border border-info rounded-1 ps-3 pe-3">Login</Button></a></span>
+        </p>
+    </div>
+</div>
+{% endblock%}
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Register</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Sign Up</button>
+    </form>
+</body>
+
+</html> -->
