@@ -3,7 +3,8 @@ from django.http import JsonResponse
 from .models import TodoItem
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
-from datetime import datetime
+from django.core.mail import send_mail
+from TODO import settings
 
 
 # Dashboard
@@ -29,6 +30,14 @@ def add_todo_item(request):
         todo_obj = TodoItem.objects.create(
             title=title, description=description, user_id=request.user.id)
         todo_obj.save()
+
+        user_obj = User.objects.filter(username=request.user)
+
+        user_email_list = []
+        for row in user_obj:
+            user_email_list.append(row.email)
+
+        send_todo_added_email(title, description, user_email_list)
     return redirect('/')
 
 
@@ -114,3 +123,13 @@ def login_user(request):
 def logout_user(request):
     auth.logout(request)
     return redirect('/')
+
+
+def send_todo_added_email(title, description, recipients):
+    subject = 'New TODO Item Added'
+    message = f'A new TODO item has been added: \n\nTitle: {title}\n\n'\
+        f"Description: {description}\n\n"
+
+    from_email = settings.EMAIL_HOST_USER
+    recipient_list = recipients
+    send_mail(subject, message, from_email, recipient_list)
