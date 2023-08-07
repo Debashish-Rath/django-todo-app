@@ -1,0 +1,61 @@
+.login-page-container {
+  margin: 50px 3vw 20px 3vw;
+  border-radius: 12px;
+  border: 2px solid #000000;
+}
+
+form {
+  background-color: #000000;
+  padding: 30px 4vw 10px 4vw;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.form-container {
+  padding: 0 3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form + p {
+  font-size: 1.2rem;
+  margin-top: -24px;
+}
+
+@media screen and (max-width: 370px) {
+  .login-page-container {
+    background: none;
+    margin-left: 0;
+    margin-right: 0;
+    border: none;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  body {
+    font-size: 12px;
+  }
+
+  form {
+    padding: 13px;
+  }
+
+  .form-container {
+    padding: 0 11px;
+  }
+}
+
+@media screen and (max-width: 275px) {
+  body {
+    font-size: 11px;
+  }
+
+  form {
+    padding: 16px;
+  }
+
+  .form-container {
+    padding: 0 13px;
+  }
+}
